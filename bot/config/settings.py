@@ -8,7 +8,7 @@ load_dotenv(".env")
 #build paths inside the project like this: BASE_DIR / 'sudir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = True
+DEBUG = os.getenv("DEBUG")
 
 # Secret keys
 BOT_TOKEN = os.getenv("BOT_TOKEN")
