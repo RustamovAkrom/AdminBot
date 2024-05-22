@@ -25,20 +25,20 @@ async def send_message_on_group_admin(message: types.Message, state: FSMContext)
 @router.message(SendMe.message)
 async def send_message(message: types.Message, state: FSMContext, bot: Bot) -> None: 
     """Sending message my group (Group admin) chat"""   
-    if message.text:
-        await state.update_data(message = message.text)
 
-        data = await state.get_data()
-        
-        # Send Group
-        await bot.send_message(GROUP_ID, TEXT_DATA(message.from_user.first_name, 
-                                                message.from_user.last_name, 
-                                                message.from_user.username, 
-                                                data['message']))
-        state.clear()
-        
-        await message.answer(SUCCESS_INPUT_DATA)
-        
-    else:
+    if not message.text:
         await message.answer(VALIDATION_OUPUT_TEXT)
         return send_message
+    
+    await state.update_data(message = message.text)
+
+    data = await state.get_data()
+    
+    # Send Group
+    await bot.send_message(GROUP_ID, TEXT_DATA(message.from_user.first_name, 
+                                            message.from_user.last_name, 
+                                            message.from_user.username, 
+                                            data['message']))
+    
+    await message.answer(SUCCESS_INPUT_DATA)
+    state.clear()
