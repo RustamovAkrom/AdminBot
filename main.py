@@ -11,10 +11,10 @@ from keep_alive import keep_alive
 # keep_alive()
 
 # Initialize sesions proxy
-# session = AiohttpSession(proxy="http://proxy.server:3128")
+session = AiohttpSession(proxy="http://proxy.server:3128")
 
 # Initialize bot and dispatcher
-bot = Bot(token = settings.BOT_TOKEN)
+bot = Bot(token = settings.BOT_TOKEN, session=session)
 dp = Dispatcher()  
 
 
