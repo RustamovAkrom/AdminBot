@@ -3,12 +3,13 @@ import asyncio
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters.command import Command
 from aiogram.client.session.aiohttp import AiohttpSession
+from aiogram.fsm.state import StatesGroup, State
 from bot.handlers import start, help, send_admin_group
 from bot.config import settings
 from keep_alive import keep_alive
 
 
-# keep_alive()
+keep_alive()
 
 # Initialize sesions proxy
 session = AiohttpSession(proxy="http://proxy.server:3128")
@@ -16,6 +17,9 @@ session = AiohttpSession(proxy="http://proxy.server:3128")
 # Initialize bot and dispatcher
 bot = Bot(token = settings.BOT_TOKEN, session=session)
 dp = Dispatcher()  
+
+
+
 
 
 # Registrations routers
